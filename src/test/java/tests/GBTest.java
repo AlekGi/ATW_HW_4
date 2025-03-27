@@ -43,7 +43,7 @@ public class GBTest {
     @BeforeAll
     public static void setupClass(){
         Configuration.baseUrl = "http://localhost:5050";
-        Configuration.remote = "http://localhost:5050/allure-docker-service/version";
+        Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.browser = "chrome";
         Configuration.browserVersion = "128.0";
         Map<String, Object> options = new HashMap<>();
