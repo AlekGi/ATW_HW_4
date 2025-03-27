@@ -1,23 +1,27 @@
 package tests;
 
 
-
+import io.qameta.allure.*;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import pom.LoginPage;
 import pom.MainPage;
 import pom.ProfilePage;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@Epic("Тестирование проекта https://test-stand.gb")
 /**
  * Пример использования самых базовых методов библиотеки Selenium.
  */
@@ -35,9 +39,11 @@ public class GBTest {
 
 
 
+
     @BeforeAll
     public static void setupClass(){
-        Configuration.remote = "http://localhost:4444/wd/hub";
+        Configuration.baseUrl = "http://localhost:5050";
+        Configuration.remote = "http://localhost:5050/allure-docker-service/version";
         Configuration.browser = "chrome";
         Configuration.browserVersion = "128.0";
         Map<String, Object> options = new HashMap<>();
@@ -58,6 +64,7 @@ public class GBTest {
         loginPage = Selenide.page(LoginPage.class);
     }
 
+    @Feature("Тестирование добавления нового болванчика")
     @Test
     @DisplayName("Добавление нового болванчика")
     public void testAddingDummieOnMainPage() throws IOException {
@@ -78,6 +85,7 @@ public class GBTest {
 //        Files.write(Path.of("src/test/java/resources/addingDummie_" + firstNameDummie + ".png"), screenshotBytes);
     }
 
+    @Feature("Удаление болванчика, помещение в архив и возврат из него")
     @Test
     @DisplayName("Удаление болванчика, помещение в архив и возврат из него")
     void testArchiveDummieOnMainPage() throws IOException{
@@ -98,6 +106,7 @@ public class GBTest {
 //        Files.write(Path.of("src/test/java/resources/restoreActive_" + firstNameDummie + ".png"), screenshotBytes2);
     }
 
+    @Feature("Логин с пустыми полями")
     @Test
     @DisplayName("Логин с пустыми полями")
     public void testLoginEmptyFields() throws IOException{
@@ -112,6 +121,7 @@ public class GBTest {
         Selenide.sleep(5000);
     }
 
+    @Feature("Проверка имени на странице профиля")
     @Test
     @DisplayName("Проверка имени на странице профиля")
     public void testFullNameOnProfilePage() throws IOException, InterruptedException {
@@ -129,6 +139,7 @@ public class GBTest {
         assertEquals("GB202409 b969d8", profilePage.getFullNameFromAvatarSection());
     }
 
+    @Feature("Проверка редактирования аватара на странице профиля")
     @Test
     @DisplayName("Проверка редактирования аватара на странице профиля")
     public void testAvatarOnEditingPopupOnProfilePage() throws IOException, InterruptedException {
@@ -156,6 +167,7 @@ public class GBTest {
                 profilePage.getAvatarInputValueOnSettingPopup());
     }
 
+    @Feature("Проверка редактирования даты рождения")
     @Test
     @DisplayName("Проверка редактирования даты рождения")
     void testBirthdateOnEditingPopupOnProfilePage(){

@@ -62,8 +62,13 @@
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-maven</artifactId>
-            <version>2.12.0</version>
+            <artifactId>allure-junit5</artifactId>
+            <version>2.22.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>2.27.0</version>
         </dependency>
     </dependencies>
 
@@ -94,6 +99,10 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
+                <configuration>
+                    <reportVersion>2.30.0</reportVersion>
+                    <buildDirectory>G:\Обучение\II Курс\Автоматизация тестирования веб-приложений на Java\ДЗ\HW4\ATW_HW_4</buildDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
