@@ -3,7 +3,6 @@ package pom;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-import pom.elements.StudentTableRow;
 
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
